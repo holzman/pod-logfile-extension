@@ -1,0 +1,28 @@
+{
+  "title": "Pod Logfile",
+  "description": "Open Pod Logfile screen",
+  "jupyter.lab.menus": {
+    "main": [
+      {
+        "id": "jp-mainmenu-view",
+          "items": [
+	      {
+		  "command": "logfile:open",
+		  "rank": 10
+
+	      }
+        ]
+      }
+    ]
+  },
+    "properties": {
+	"url": {
+	    "type": "string",
+	    "title": "Pod Logfile URL",
+	    "description": "Pod Logfile URL",
+	    "default": "https://CHANGEME/grafana/mydashboard"
+	}
+    },
+  "additionalProperties": false,
+  "type": "object"
+}

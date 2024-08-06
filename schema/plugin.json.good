@@ -1,0 +1,27 @@
+{
+  "title": "Launcher Example",
+  "description": "Launcher Example settings.",
+  "jupyter.lab.menus": {
+    "main": [
+      {
+        "id": "jp-mainmenu-view",
+        "items": [
+          {
+            "type": "submenu",
+            "submenu": {
+              "id": "jp-mainmenu-file-new",
+              "items": [
+                {
+                  "command": "logfile:open",
+                  "rank": 80
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "additionalProperties": false,
+  "type": "object"
+}

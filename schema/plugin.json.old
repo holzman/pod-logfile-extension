@@ -1,0 +1,23 @@
+{
+  "title": "Main Menu Example",
+  "description": "Main Menu Example settings.",
+  "jupyter.lab.menus": {
+    "main": [
+      {
+        "id": "jp-mainmenu-example-menu",
+        "label": "Podo Logfile",
+        "rank": 80,
+        "items": [
+          {
+              "command": "logfile:open",
+            "args": {
+              "origin": "from the menu"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "additionalProperties": false,
+  "type": "object"
+}

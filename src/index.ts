@@ -1,6 +1,7 @@
 import {
   JupyterFrontEnd,
-  JupyterFrontEndPlugin
+    JupyterFrontEndPlugin,
+    JupyterLab
 } from '@jupyterlab/application';
 
 import { ICommandPalette, MainAreaWidget } from '@jupyterlab/apputils';
@@ -19,11 +20,12 @@ const plugin: JupyterFrontEndPlugin<void> = {
   description: "A command to open the user's logfile in Landscape",
   autoStart: true,
   optional: [ILauncher],
-  requires: [ICommandPalette, ISettingRegistry],
+    requires: [ICommandPalette, ISettingRegistry, JupyterLab.IInfo],
   activate: async (
     app: JupyterFrontEnd,
     palette: ICommandPalette,
-    settingRegistry: ISettingRegistry
+    settingRegistry: ISettingRegistry,
+    info: JupyterLab.IInfo
   ) => {
     console.log('JupyterLab extension pod-logfile is now activated');
     const newWidget = () => {
@@ -41,7 +43,8 @@ const plugin: JupyterFrontEndPlugin<void> = {
           url = settings.get('url').composite as string;
 
           iframe.src = `${url}&var-podname=${data.data}`;
-          console.log(`Setting iframe.src to ${url}&var-podname=${data.data}`);
+            console.log(`Setting iframe.src to ${url}&var-podname=${data.data}`);
+	    console.log(`IInfo.isConnected is ${info.isConnected}`);
         })
         .catch(reason => {
           console.error(
@@ -62,15 +65,18 @@ const plugin: JupyterFrontEndPlugin<void> = {
 
     app.commands.addCommand(command, {
       label: 'Show Pod Logfile',
-      execute: () => {
+	execute: () => {
+	    console.log(`IInfo.isConnected is ${info.isConnected}`);	    
         if (widget.isDisposed) {
-          widget = newWidget();
+//          widget = newWidget();
         }
-        if (!widget.isAttached) {
-          app.shell.add(widget, 'main');
-        }
-        app.shell.activateById(widget.id);
-      }
+//        if (!widget.isAttached) {
+//
+//           app.shell.add(widget, 'main');
+//        }
+//            app.shell.activateById(widget.id);
+
+	}
     });
     palette.addItem({ command, category: 'Stuff' });
   }
